@@ -1,42 +1,33 @@
 <template>
-    <div>
-        <div class="container">
-            <AppMovieCard v-for="(item, index) in data" :key="item" :item="item" />
-        </div>
+  <div>
+    <div class="container">
+      <AppMovieCard v-for="item in data" :key="item.id" :item="item" />
     </div>
+  </div>
 </template>
 <script setup>
-import { onMounted, onUpdated, ref } from 'vue';
+import { onMounted, onUpdated, ref } from 'vue'
+import { useMovieStore } from '../store/useMovieStore.js'
+import AppMovieCard from '../components/AppMovieCard.vue'
+import { storeToRefs } from 'pinia'
 
-import { useMovieStore } from '../store/useMovieStore.js';
-
-import AppMovieCard from '../components/AppMovieCard.vue';
-
-const movieStore = useMovieStore();
-const data = ref()
-
+const movieStore = useMovieStore()
+const { data } = storeToRefs(movieStore)
 
 onMounted(async () => {
-    await movieStore.getMovie()
-    data.value = movieStore.data
+  await movieStore.getMovie()
 })
-
-onUpdated(async () => {
-    await movieStore.getMovie()
-    data.value = movieStore.data
-})
-
 </script>
 <style scoped>
 .head {
-    text-align: center;
+  text-align: center;
 }
 
 .container {
-    margin: 20px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+  margin: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 </style>
