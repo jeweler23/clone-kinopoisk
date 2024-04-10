@@ -20,7 +20,6 @@ const movieStore = useMovieStore()
 
 const changeSearch = async () => {
   movieStore.searchElem = searchValue.value
-  //   await movieStore.getMovie()
 }
 </script>
 

@@ -1,6 +1,7 @@
 <template>
   <div class="header">
-    <h1>Movie Search</h1>
+    <h1 @click="routerBack">Movie Search</h1>
+
     <AppSearchMovie />
 
     <AppAuth />
@@ -9,6 +10,13 @@
 <script setup>
 import AppSearchMovie from './AppSearchMovie.vue'
 import AppAuth from './AppAuth.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const routerBack = () => {
+  router.go(-1)
+}
 </script>
 <style scoped>
 .header {
