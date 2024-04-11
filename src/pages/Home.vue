@@ -1,5 +1,6 @@
 <template>
   <div>
+    <app-filter />
     <div class="container">
       <AppMovieCard v-for="item in data" :key="item.id" :item="item" />
     </div>
@@ -9,6 +10,7 @@
 import { onMounted, onUpdated, ref } from 'vue'
 import { useMovieStore } from '../store/useMovieStore.js'
 import AppMovieCard from '../components/AppMovieCard.vue'
+import AppFilter from '../components/AppFilter.vue'
 import { storeToRefs } from 'pinia'
 
 const movieStore = useMovieStore()

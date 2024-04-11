@@ -16,6 +16,7 @@ export const useMovieStore = defineStore('movieStore', () => {
     )
     const { docs } = await response.json()
     data.value = docs
+    localStorage.setItem('movie', JSON.stringify(data.value))
   }
 
   watch(searchElem, async () => await getMovie())
@@ -24,5 +25,12 @@ export const useMovieStore = defineStore('movieStore', () => {
 
   const selectMovie = computed(() => data.value.filter((item) => item.id === id.value))
 
-  return { data, searchElem, getMovie, id, selectMovie }
+  const sortedMovieYears = computed(() =>
+    data.value.sort((a, b) => Number(b.year) - Number(a.year))
+  )
+  const filterMovieRating = computed(() =>
+    data.value.sort((a, b) => Number(b.rating.kp) - Number(a.rating.kp))
+  )
+
+  return { data, searchElem, getMovie, id, selectMovie, sortedMovieYears, filterMovieRating }
 })
