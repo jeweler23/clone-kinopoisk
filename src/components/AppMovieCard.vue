@@ -1,9 +1,9 @@
 <template>
   <router-link :to="{ name: 'movie', params: { id: props.item.id } }">
-    <div @click="movieStore.id = props.item.id">
+    <div @click="movieStore.id = props.item.id" class="card">
       <img :src="props.item.poster?.url" alt="" class="image" />
       <h2>{{ props.item.alternativeName }}</h2>
-      <p>{{ props.item.description }}</p>
+      <!-- <p>{{ props.item.description }}</p> -->
     </div>
   </router-link>
 </template>
@@ -20,7 +20,11 @@ const props = defineProps({
 })
 </script>
 <style scoped>
-.image {
+.card {
   width: 200px;
+}
+
+.image {
+  width: 100%;
 }
 </style>
