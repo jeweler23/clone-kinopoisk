@@ -10,6 +10,8 @@
 </template>
 
 <script setup>
+import { API_TOKEN } from '../consts/token';
+
 import { useRoute } from 'vue-router';
 
 import { onMounted, ref } from 'vue';
@@ -27,7 +29,7 @@ const data = ref()
 
 const options = {
     method: 'GET',
-    headers: { accept: 'application/json', 'X-API-KEY': 'WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M' }
+    headers: { accept: 'application/json', 'X-API-KEY': API_TOKEN }
 }
 
 const getMovie = async () => {

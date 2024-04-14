@@ -1,4 +1,6 @@
 # Logs
+./src/consts/token.js
+
 logs
 *.log
 npm-debug.log*

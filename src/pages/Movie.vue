@@ -45,7 +45,8 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, onBeforeUpdate, watch, computed } from 'vue'
+import { API_TOKEN } from '../consts/token';
+import { ref, onMounted, onBeforeUpdate, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 import { useMovieStore } from '../store/useMovieStore'
@@ -69,7 +70,7 @@ const route = ref(useRoute())
 
 const options = {
   method: 'GET',
-  headers: { accept: 'application/json', 'X-API-KEY': 'WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M' }
+  headers: { accept: 'application/json', 'X-API-KEY': API_TOKEN }
 }
 
 const searchMovie = async () => {

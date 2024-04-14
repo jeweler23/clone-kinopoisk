@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia'
 import { computed, onMounted, ref, watch } from 'vue'
+import { API_TOKEN } from '../consts/token'
 
 export const useMovieStore = defineStore('movieStore', () => {
   const data = ref()
   const searchElem = ref('')
   const options = {
     method: 'GET',
-    headers: { accept: 'application/json', 'X-API-KEY': 'WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M' }
+    headers: { accept: 'application/json', 'X-API-KEY': API_TOKEN }
   }
 
   const getMovie = async () => {
