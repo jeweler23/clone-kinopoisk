@@ -70,7 +70,7 @@ if (!data.value) {
   text-align: center;
   font-size: 18px;
   background: #fff;
-  height: calc((100% - 250px) / 2) !important;
+  height: calc((100% - 200px) / 2) !important;
 }
 
 .swiper-pagination {
