@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <h1 @click="routerBack">Movie Search</h1>
+    <h1 @click="router.push('/')">Movie Search</h1>
 
     <AppSearchMovie />
 

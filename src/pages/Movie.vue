@@ -1,53 +1,58 @@
 <template>
-  <div class="container-movie">
-    <img :src="selectMovie?.poster.url" alt="" class="image" style="padding: 30px;" />
-    <div class="movie-description">
-      <h2>{{ selectMovie?.name }}</h2>
-      <p>{{ selectMovie?.description }}</p>
-      <p>Рейтинг - {{ selectMovie?.rating.kp }}</p>
-      <div>
-        Страна - <span v-for="country of selectMovie?.countries" :key="country">{{ country.name + ' ' }}</span>
-      </div>
-      <h3>Список актеров</h3>
-      <div class="mySwiper" v-if="selectMovie?.persons">
-        <Swiper :slidesPerView="3" :spaceBetween="30" :pagination="{
-          clickable: true,
-        }" :modules="[Pagination]" class="mySwiper">
-          <SwiperSlide v-for="person of selectMovie?.persons" :key="person.id" class="swiper-slide ">
-            <AppPersonCard :person="person" />
-          </SwiperSlide>
-        </Swiper>
-      </div>
-      <div v-else>
-        нет информации о Актерах
-      </div>
-      <!-- <div v-if="selectMovie.isSeries"></div> -->
+  <div class="relative">
+    <el-button type="danger" class="absolute -top-2 left-12" @click="router.go(-1)">Назад</el-button>
+    <div class="container-movie">
 
-      <h3>Похожие фильмы</h3>
+      <img :src="selectMovie?.poster.url" alt="" class="image" style="padding: 30px;" />
+      <div class="movie-description">
+        <h2>{{ selectMovie?.name }}</h2>
+        <p>{{ selectMovie?.description }}</p>
+        <p>Рейтинг - {{ selectMovie?.rating.kp }}</p>
+        <div>
+          Страна - <span v-for="country of selectMovie?.countries" :key="country">{{ country.name + ' ' }}</span>
+        </div>
+        <h3>Список актеров</h3>
+        <div class="mySwiper" v-if="selectMovie?.persons">
+          <Swiper :slidesPerView="3" :spaceBetween="30" :pagination="{
+            clickable: true,
+          }" :modules="[Pagination]" class="mySwiper">
+            <SwiperSlide v-for="person of selectMovie?.persons" :key="person.id" class="swiper-slide ">
+              <AppPersonCard :person="person" />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+        <div v-else>
+          нет информации о Актерах
+        </div>
+        <!-- <div v-if="selectMovie.isSeries"></div> -->
 
-      <div class="mySwiper" v-if="selectMovie?.similarMovies">
-        <Swiper :slidesPerView="3" :spaceBetween="30" :pagination="{
-          clickable: true,
-        }" :modules="[Pagination]" class="mySwiper">
-          <SwiperSlide v-for="movie of selectMovie?.similarMovies" :key="movie.id" class="swiper-slide ">
-            <AppSimilarMovies :movie="movie" />
-          </SwiperSlide>
-        </Swiper>
+        <h3>Похожие фильмы</h3>
+
+        <div class="mySwiper" v-if="selectMovie?.similarMovies">
+          <Swiper :slidesPerView="3" :spaceBetween="30" :pagination="{
+            clickable: true,
+          }" :modules="[Pagination]" class="mySwiper">
+            <SwiperSlide v-for="movie of selectMovie?.similarMovies" :key="movie.id" class="swiper-slide ">
+              <AppSimilarMovies :movie="movie" />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+        <div v-else>
+          нет информации о похожих фильмах
+        </div>
+
+
+        <AppPostersMovie />
+
       </div>
-      <div v-else>
-        нет информации о похожих фильмах
-      </div>
-
-
-      <AppPostersMovie />
-
     </div>
   </div>
 </template>
 <script setup>
 import { API_TOKEN } from '../consts/token';
 import { ref, onMounted, onBeforeUpdate, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+
 
 import { useMovieStore } from '../store/useMovieStore'
 
@@ -67,6 +72,7 @@ const movieStore = useMovieStore()
 const selectMovie = ref()
 
 const route = ref(useRoute())
+const router = useRouter()
 
 const options = {
   method: 'GET',

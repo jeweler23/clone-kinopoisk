@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
-// import './assets/tailwind.css'
 import './style.css'
 import App from './App.vue'
 
@@ -9,6 +8,10 @@ import router from './router/index'
 
 import PrimeVue from 'primevue/config';
 import 'primevue/resources/themes/aura-light-green/theme.css'
+
+// Element
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 
 // Vuetify
 import 'vuetify/styles'
@@ -26,4 +29,4 @@ const vuetify = createVuetify({
 const app = createApp(App)
 const pinia = createPinia()
 
-app.use(router).use(pinia).use(vuetify).use(PrimeVue).mount('#app')
+app.use(router).use(pinia).use(vuetify).use(PrimeVue).use(ElementPlus).mount('#app')
