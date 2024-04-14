@@ -8,7 +8,6 @@ export const useMovieStore = defineStore('movieStore', () => {
     method: 'GET',
     headers: { accept: 'application/json', 'X-API-KEY': 'WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M' }
   }
-  // `https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=10&query=${searchElem.value}`,
 
   const getMovie = async () => {
     const response = await fetch(
@@ -33,5 +32,7 @@ export const useMovieStore = defineStore('movieStore', () => {
     data.value.sort((a, b) => Number(b.rating.kp) - Number(a.rating.kp))
   )
 
-  return { data, searchElem, getMovie, id, selectMovie, sortedMovieYears, filterMovieRating }
+  const amountMovie = ref(5)
+
+  return { data, searchElem, getMovie, id, selectMovie, sortedMovieYears, filterMovieRating, amountMovie }
 })

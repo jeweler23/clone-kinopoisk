@@ -22,17 +22,16 @@ const props = defineProps({
 </script>
 <style scoped>
 .card {
-  width: 300px;
-  height: 150px;
+  width: 200px;
+  height: auto;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr auto auto;
-  /* align-items: center; */
-  /* justify-content: center; */
+
 }
 
 .image {
-  width: 200px;
+  width: 100%;
   justify-self: center;
   /* align-self: center; */
 }

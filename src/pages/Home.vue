@@ -1,19 +1,15 @@
 <template>
   <div>
     <app-filter />
-    <!-- <KeepAlive> -->
     <div class="container">
-      <Swiper :slidesPerView="3" :grid="{
-        rows: 2,
-      }" :spaceBetween="30" :pagination="{
-        clickable: true,
-      }" :modules="[Grid, Pagination]" class="mySwiper">
+
+      <Swiper :slidesPerView="movieStore.amountMovie" :grid="{ rows: 2 }" :spaceBetween="30"
+        :pagination="{ clickable: true, }" :modules="[Grid, Pagination]" class="mySwiper">
         <SwiperSlide v-for="item in data" :key="item.id" :item="item" class="swiper-slide ">
           <AppMovieCard :item="item" />
         </SwiperSlide>
       </Swiper>
     </div>
-    <!-- </KeepAlive> -->
   </div>
 </template>
 <script setup>
@@ -33,9 +29,13 @@ const movieStore = useMovieStore()
 const { data } = storeToRefs(movieStore)
 
 
-onMounted(async () => {
-  await movieStore.getMovie()
-})
+
+if (!data.value) {
+  onMounted(async () => {
+    await movieStore.getMovie()
+  })
+}
+
 </script>
 <style scoped>
 .head {
@@ -47,16 +47,21 @@ onMounted(async () => {
 }
 
 .container {
-  margin: 20px auto;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
   height: 100vh;
-  /* grid-template-columns: repeat(3, 1fr); */
-  gap: 10px;
+  max-width: 1880px;
+}
+
+
+.mySwiper {
   width: 100%;
+
 }
 
 .swiper {
   width: 100%;
-  height: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -65,6 +70,19 @@ onMounted(async () => {
   text-align: center;
   font-size: 18px;
   background: #fff;
-  height: calc((100% - 30px) / 2) !important;
+  height: calc((100% - 250px) / 2) !important;
+}
+
+.swiper-pagination {
+  /* position: relative; */
+  bottom: 300px;
+  top: 300px;
+}
+
+.swiper-horizontal>.swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  /* position: relative; */
+  bottom: 300px;
+  top: 300px;
 }
 </style>

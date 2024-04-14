@@ -7,6 +7,9 @@ import App from './App.vue'
 
 import router from './router/index'
 
+import PrimeVue from 'primevue/config';
+import 'primevue/resources/themes/aura-light-green/theme.css'
+
 // Vuetify
 import 'vuetify/styles'
 
@@ -23,4 +26,4 @@ const vuetify = createVuetify({
 const app = createApp(App)
 const pinia = createPinia()
 
-app.use(router).use(pinia).use(vuetify).mount('#app')
+app.use(router).use(pinia).use(vuetify).use(PrimeVue).mount('#app')
