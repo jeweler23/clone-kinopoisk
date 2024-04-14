@@ -1,5 +1,4 @@
 # Logs
-./src/consts/token.js
 
 logs
 *.log
@@ -24,3 +23,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+./src/consts/token.js
