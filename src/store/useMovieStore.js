@@ -7,7 +7,7 @@ export const useMovieStore = defineStore('movieStore', () => {
   const searchElem = ref('')
   const options = {
     method: 'GET',
-    headers: { accept: 'application/json', 'X-API-KEY': API_TOKEN }
+    headers: { accept: 'application/json', 'X-API-KEY': API_TOKEN}
   }
 
   const getMovie = async () => {
