@@ -2,9 +2,8 @@
   <router-link :to="{ name: 'movie', params: { id: props.item.id } }">
     <div @click="movieStore.id = props.item.id" class="card">
       <img :src="props.item.poster?.url" alt="" class="image" />
-      <h2 class="card-head">{{ props.item.name }}</h2>
-      <p class="card-info">{{ props.item.year
-        }}, {{ props.item.genres[0].name }}</p>
+      <h2 class="card-head">{{ props.item?.name }}</h2>
+      <p class="card-info">{{ props.item.year }}, {{ props.item.genres[0].name }}</p>
     </div>
   </router-link>
 </template>
@@ -19,6 +18,8 @@ const props = defineProps({
     require: true
   }
 })
+
+console.log(props)
 </script>
 <style scoped>
 .card {
@@ -27,7 +28,6 @@ const props = defineProps({
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr auto auto;
-
 }
 
 .image {
@@ -36,7 +36,9 @@ const props = defineProps({
   /* align-self: center; */
 }
 
-.card-head {}
+.card-head {
+}
 
-.card-info {}
+.card-info {
+}
 </style>
