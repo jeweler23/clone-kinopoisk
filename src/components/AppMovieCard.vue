@@ -18,8 +18,6 @@ const props = defineProps({
     require: true
   }
 })
-
-console.log(props)
 </script>
 <style scoped>
 .card {

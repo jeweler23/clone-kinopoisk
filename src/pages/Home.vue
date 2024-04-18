@@ -39,14 +39,10 @@ import 'swiper/css'
 import 'swiper/css/grid'
 import 'swiper/css/pagination'
 
-import { ElLoading } from 'element-plus'
-
 import ProgressSpinner from 'primevue/progressspinner'
 
 const movieStore = useMovieStore()
-const { data } = storeToRefs(movieStore)
-
-const fullscreenLoading = ref(false)
+const data = ref(JSON.parse(localStorage.getItem('movie')))
 
 const loader = ref(false)
 
@@ -54,10 +50,12 @@ if (!data.value) {
   loader.value = true
   onMounted(async () => {
     await movieStore.getMovie()
+    data.value = movieStore.data
     setTimeout(() => {
       loader.value = false
     }, 1500)
   })
+  console.log(data.value)
 }
 </script>
 <style scoped>
